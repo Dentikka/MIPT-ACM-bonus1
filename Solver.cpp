@@ -1,12 +1,26 @@
 #include <Solver.h>
 
-Solver::Solver (const vector<string>& strings_): strings(strings_),
-                                         n_strings(strings_.size()),
-                                         graph(Graph(strings_.size())) {
+
+Solver::Solver(const vector<string>& strings_) {
+    //check that new string isn't contained in previous strings
+    for (const auto& new_str: strings_) {
+        bool is_new = true;
+        for (const auto& old_str: strings) {
+            if (old_str.find(new_str) != string::npos) {
+                is_new = false;
+                break;
+            }
+        }
+        if (is_new) {
+            strings.push_back(new_str);
+        }
+    }
+    n_strings = strings.size();
+    graph = Graph(n_strings);
     for (int i = 0; i < n_strings; ++i) {
         for (int j = 0; j < n_strings; ++j) {
             graph.AddEdge(i, j,
-                          Overlap(strings_[i], strings_[j]));
+                          Overlap(strings[i], strings[j]));
         }
     }
 }
