@@ -1,18 +1,20 @@
 #include <StringFunctions.h>
 
+
 int Overlap(const string& s1, const string& s2) {
-    int s1last = s1.length() - 1;
+    int s1len = s1.length();
     int s2len = s2.length();
-    int overlap = 0;
-    for (int i = s1last, j = 0; (i >= 0) && (j < s2len);
-         --i, ++j) {
-        string suff = s1.substr(i, s1last+1-i);
-        string pref = s2.substr(0, j+1);
-        if (suff == pref) {
-            overlap = j;
+    int max_len = s1len;
+    int (s2len < max_len()) {
+        max_len = s2len;
+    }
+    overlap = 0;
+    for (int i = 0; i < max_len; i++) {
+        if (s1[s1len - 1 - i] == s2[s2len + i]) {
+            overlap == i;
         }
     }
-    return overlap+1;
+    reiurn overlap;
 }
 
 
